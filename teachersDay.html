@@ -1,0 +1,169 @@
+<html>
+<head>
+  <title>Happy Teacher</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: sans-serif;
+      background-color: #3B4049;
+    }
+
+    .wrapper {
+      height: 200px;
+      width: 300px;
+      background-color: #3760C9;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      z-index: 0;
+    }
+
+    .lid {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
+      border-right: 150px solid transparent;
+      border-bottom: 100px solid transparent;
+      border-left: 150px solid transparent;
+      transform-origin: top;
+      transition: transform 0.25s linear;
+    }
+
+    /* Lid when closed */
+    .lid.one {
+      border-top: 100px solid #658ced;
+      transform: rotateX(0deg);
+      z-index: 3;
+      transition-delay: 0.75s;
+    }
+
+    /* Lid when opened */
+    .lid.two {
+      border-top: 100px solid #3760C9;
+      transform: rotateX(90deg);
+      z-index: 1;
+      transition-delay: 0.5s;
+    }
+
+    .envelope {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
+      border-top: 100px solid transparent;
+      border-right: 150px solid #C4DFF0;
+      border-bottom: 100px solid #C4DFF0;
+      border-left: 150px solid #a4d4f2;
+      z-index: 3;
+    }
+
+    .letter {
+      position: absolute;
+      top: 0;
+      width: 80%;
+      height: 80%;
+      background-color: white;
+      border-radius: 15px;
+      z-index: 2;
+      transition: 0.5s;
+      transform: translateY(0); /* Initially at original position */
+    }
+
+    .letter p {
+      text-align: center;
+      font-size: 30px;
+      margin-top: 30px;
+      color: #3B4049;
+    }
+
+    /* Open state */
+    .open .lid.one {
+      transform: rotateX(90deg);
+      transition-delay: 0s;
+    }
+
+    .open .lid.two {
+      transform: rotateX(180deg);
+      transition-delay: 0.25s;
+    }
+
+    .open .letter {
+      transform: translateY(-50px);
+      transition-delay: 0.5s;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .wrapper {
+        width: 300px; /* Smaller width for medium screens */
+        height: 170px;
+      }
+
+      .lid {
+        border-right: 125px solid transparent;
+        border-left: 125px solid transparent;
+        border-top: 85px solid #658ced;
+        border-bottom: 85px solid transparent;
+      }
+
+      .envelope {
+        border-right: 125px solid #C4DFF0;
+        border-left: 125px solid #C4DFF0;
+        border-bottom: 85px solid #C4DFF0;
+      }
+
+      .letter {
+        width: 70%;
+        height: 70%;
+      }
+
+      .letter p {
+        font-size: 20px; /* Smaller font for medium screens */
+      }
+    }
+
+    @media (max-width: 480px) {
+      .wrapper {
+        width: 300px; /* Fixed width for very small screens */
+        height: 200px;
+        transform: scale(0.8); /* Scales down for ultra-small screens */
+      }
+
+      .letter p {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper" id="envelope">
+    <div class="lid one"></div>
+    <div class="lid two"></div>
+    <div class="envelope"></div>
+    <div class="letter">
+      <p>Good morning 😭</p>
+    </div>
+  </div>
+
+  <script>
+    const envelope = document.getElementById("envelope");
+
+    envelope.addEventListener("click", () => {
+      envelope.classList.toggle("open");
+    });
+  </script>
+</body>
+</html>
